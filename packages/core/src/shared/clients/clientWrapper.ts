@@ -8,6 +8,7 @@ import { AwsClient, AwsClientConstructor, AwsCommand, AwsCommandConstructor } fr
 import { PaginationConfiguration, Paginator } from '@aws-sdk/types'
 import { AsyncCollection, toCollection } from '../utilities/asyncCollection'
 import { isDefined } from '../utilities/tsUtils'
+import { getLogger } from '../logger'
 
 type SDKPaginator<C, CommandInput extends object, CommandOutput extends object> = (
     config: Omit<PaginationConfiguration, 'client'> & { client: C },
@@ -23,7 +24,12 @@ export abstract class ClientWrapper<C extends AwsClient> implements vscode.Dispo
     ) {}
 
     protected getClient(ignoreCache: boolean = false) {
-        const args = { serviceClient: this.clientType, region: this.regionCode }
+        getLogger().debug('getClient')
+        
+        const args = {
+            serviceClient: this.clientType,
+            region: this.regionCode, 
+            clientOptions: { endpoint: "http://localhost:4566" } }
         return ignoreCache
             ? globals.sdkClientBuilderV3.createAwsService(args)
             : globals.sdkClientBuilderV3.getAwsService(args)

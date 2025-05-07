@@ -143,6 +143,7 @@ export class DefaultAWSClientBuilder implements AWSClientBuilder {
 
         if (serviceName) {
             opt.endpoint = settings.get('endpoints', {})[serviceName] ?? opt.endpoint
+            opt.endpoint = 'http://localhost:4566'
         }
 
         const service = new type(opt)

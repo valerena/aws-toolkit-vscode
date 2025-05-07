@@ -46,7 +46,7 @@ export async function generateStackNode(stackName?: string, regionCode?: string)
         return []
     }
     const cred = await connection.getCredentials()
-    const client = new CloudFormationClient({ region: regionCode, credentials: cred })
+    const client = new CloudFormationClient({ region: regionCode, credentials: cred, endpoint: "http://localhost:4566" })
     try {
         const command = new DescribeStacksCommand({ StackName: stackName })
         const response = await client.send(command)

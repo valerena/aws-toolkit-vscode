@@ -99,6 +99,7 @@ export async function getSpawnEnv(
         const connection = await getIAMConnection({ prompt: promptForInvalidCredential })
         if (connection?.type === 'iam' && connection.state === 'valid') {
             mergedEnv = await injectCredentials(connection, mergedEnv)
+            mergedEnv["AWS_ENDPOINT_URL"] = "http://localhost:4566" // TODO: remove this when we have a better way to inject endpoint url
         }
     }
 

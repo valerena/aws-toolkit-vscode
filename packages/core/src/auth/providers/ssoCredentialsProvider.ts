@@ -61,4 +61,8 @@ export class SsoCredentialsProvider implements CredentialsProvider {
     private async hasToken() {
         return (await this.tokenProvider.getToken()) !== undefined
     }
+
+    public getEndpointUrl(): string | undefined {
+        return undefined
+    }
 }

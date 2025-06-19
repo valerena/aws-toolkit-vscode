@@ -51,6 +51,7 @@ describe('LoginManager', async function () {
             getHashCode: sandbox.stub().returns('1234'),
             canAutoConnect: sandbox.stub().returns(true),
             isAvailable: sandbox.stub().returns(Promise.resolve(true)),
+            getEndpointUrl: sandbox.stub().returns(undefined),
         }
 
         getAccountIdStub = sandbox.stub(DefaultStsClient.prototype, 'getCallerIdentity').resolves({

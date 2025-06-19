@@ -83,4 +83,8 @@ export class EcsCredentialsProvider implements CredentialsProvider {
     public async getCredentials(): Promise<Credentials> {
         return this.provider()
     }
+
+    public getEndpointUrl(): string | undefined {
+        return undefined
+    }
 }

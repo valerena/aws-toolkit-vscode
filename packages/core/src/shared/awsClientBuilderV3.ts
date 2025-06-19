@@ -173,7 +173,10 @@ export class AWSClientBuilderV3 {
                 return creds
             }
         }
-
+        const endpointUrl = this.context.getCredentialEndpointUrl()
+        if (endpointUrl !== undefined) {
+                opt.endpoint = endpointUrl
+        }
         const service = new serviceOptions.serviceClient(opt)
         service.middlewareStack.add(telemetryMiddleware, { step: 'deserialize' })
         service.middlewareStack.add(loggingMiddleware, { step: 'finalizeRequest' })

@@ -69,4 +69,8 @@ export class TempCredentialProvider implements CredentialsProvider {
             secretAccessKey: this.credentials.aws_secret_access_key,
         }
     }
+
+    public getEndpointUrl(): string | undefined {
+        return undefined
+    }
 }

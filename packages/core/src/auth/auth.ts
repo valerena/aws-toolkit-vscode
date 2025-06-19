@@ -828,8 +828,8 @@ export class Auth implements AuthService, ConnectionManager {
     private async createCachedCredentials(provider: CredentialsProvider) {
         const providerId = provider.getCredentialsId()
         globals.loginManager.store.invalidateCredentials(providerId)
-        const { credentials } = await globals.loginManager.store.upsertCredentials(providerId, provider)
-        await globals.loginManager.validateCredentials(credentials, provider.getDefaultRegion())
+        const { credentials, endpointUrl } = await globals.loginManager.store.upsertCredentials(providerId, provider)
+        await globals.loginManager.validateCredentials(credentials, endpointUrl, provider.getDefaultRegion())
 
         return credentials
     }

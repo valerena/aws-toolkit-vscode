@@ -142,8 +142,13 @@ export class DefaultAWSClientBuilder implements AWSClientBuilder {
             (type as unknown as { serviceIdentifier?: string }).serviceIdentifier
 
         if (serviceName) {
-            opt.endpoint = settings.get('endpoints', {})[serviceName] ?? opt.endpoint
-            opt.endpoint = 'http://localhost:4566'
+            // First check if there's an endpoint URL in the profile configuration
+            if (this.awsContext.getCredentialEndpointUrl()) {
+                opt.endpoint = this.awsContext.getCredentialEndpointUrl()
+            } else {
+                // Then check if there's an endpoint in the dev settings
+                opt.endpoint = settings.get('endpoints', {})[serviceName] ?? opt.endpoint
+            }
         }
 
         const service = new type(opt)

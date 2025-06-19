@@ -105,6 +105,10 @@ export class SharedCredentialsProvider implements CredentialsProvider {
         return this.profile[SharedCredentialsKeys.REGION]
     }
 
+    public getEndpointUrl(): string | undefined {
+        return this.profile[SharedCredentialsKeys.ENDPOINT_URL]
+    }
+
     public async canAutoConnect(): Promise<boolean> {
         if (isSsoProfile(this.profile)) {
             const tokenProvider = SsoAccessTokenProvider.create({

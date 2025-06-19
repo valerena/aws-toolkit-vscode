@@ -64,7 +64,7 @@ function updateItem(statusBarItem: vscode.StatusBarItem, devSettings: DevSetting
     )
 
     const icon = connections.some((c) => c.state !== 'valid') ? getIcon('vscode-error') : getIcon('vscode-check')
-    const getText = (text: string) => codicon`${icon} ${company}: ${text} [custom endpoint]`
+    const getText = (text: string) => codicon`${icon} ${company}: ${text}`
     if (connections.length === 0) {
         statusBarItem.text = company
         statusBarItem.tooltip = disconnectedTooltip

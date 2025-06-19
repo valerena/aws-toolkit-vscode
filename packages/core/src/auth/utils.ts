@@ -114,7 +114,9 @@ export async function promptAndUseConnection(...[auth, type]: Parameters<typeof 
  * @returns active iam connection, or undefined if not found/no prompt
  */
 export async function getIAMConnection(opts: { prompt: boolean } = { prompt: false }) {
+    const logger = getLogger()
     const connection = Auth.instance.activeConnection
+    logger.debug('getIAMConnection: current connection is %s', connection)
     if (connection?.type === 'iam' && connection.state === 'valid') {
         return connection
     }
@@ -502,7 +504,7 @@ export function createConnectionPrompter(auth: Auth, type?: 'iam' | 'iam-only' |
         if (conn.type === 'iam') {
             // TODO: implement a proper `getConnectionSource` method to discover where a connection came from
             const descSuffix = conn.id.startsWith('profile:')
-                ? 'configured locally (~/.aws/config) / endpoint: http://localhost:4566'
+                ? 'configured locally (~/.aws/config) '
                 : conn.id.startsWith('sso:')
                   ? 'sourced from IAM Identity Center'
                   : 'sourced from the environment'

@@ -90,4 +90,8 @@ export class Ec2CredentialsProvider implements CredentialsProvider {
     public async getCredentials(): Promise<Credentials> {
         return fromInstanceMetadata()()
     }
+
+    public getEndpointUrl(): string | undefined {
+        return undefined
+    }
 }

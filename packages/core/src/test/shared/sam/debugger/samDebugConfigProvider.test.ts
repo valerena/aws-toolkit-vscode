@@ -343,6 +343,7 @@ describe('SamDebugConfigurationProvider', async function () {
                 getHashCode: sandbox.stub().returns('1234'),
                 canAutoConnect: sandbox.stub().returns(true),
                 isAvailable: sandbox.stub().returns(Promise.resolve(true)),
+                getEndpointUrl: sandbox.stub().returns(undefined),
             }
             const getCredentialsProviderStub = sandbox.stub(
                 CredentialsProviderManager.getInstance(),
@@ -2640,6 +2641,7 @@ describe('SamDebugConfigurationProvider', async function () {
                 getHashCode: sandbox.stub().returns('1234'),
                 canAutoConnect: sandbox.stub().returns(true),
                 isAvailable: sandbox.stub().returns(Promise.resolve(true)),
+                getEndpointUrl: sandbox.stub().returns(undefined),
             }
             const getCredentialsProviderStub = sandbox.stub(
                 CredentialsProviderManager.getInstance(),
